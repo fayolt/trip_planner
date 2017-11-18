@@ -12,7 +12,7 @@ public class Controller {
 		destination.setStop_id(33506);
 		boolean available = false;
 		try {
-			available = destination.checkTripAvailability(LocalDate.parse("2017-11-17"), LocalTime.parse("12:21:00"));
+			available = destination.checkTripAvailability(LocalDate.parse("2017-11-17"), LocalTime.parse("02:21:00"));
 		} catch (ClassNotFoundException | IOException | SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
