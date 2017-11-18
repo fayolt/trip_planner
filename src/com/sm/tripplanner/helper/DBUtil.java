@@ -43,6 +43,7 @@ public class DBUtil {
 		if (rows == 1) {
 			stmt.setMaxRows(1);
 		}
+		System.out.println(query);
 		ResultSet results = stmt.executeQuery(query);
 		return results;
 	}

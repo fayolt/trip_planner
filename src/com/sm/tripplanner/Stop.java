@@ -12,7 +12,7 @@ public class Stop extends Location {
 	private int stop_id;
 	
 	public boolean checkTripAvailability(LocalDate date, LocalTime time) throws IOException, ClassNotFoundException, SQLException {
-		List<Schedule> times = ScheduleHelper.getSchedules(getStop_id(), date, time);
+		List<Schedule> times = ScheduleHelper.getAvailableTrips(getStop_id(), date, time);
 		if (times.size() > 0)
 			return true;
 		else

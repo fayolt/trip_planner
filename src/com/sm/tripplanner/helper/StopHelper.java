@@ -24,7 +24,6 @@ public class StopHelper {
 			stop.setName(r.getString("stop_name"));
 			result.add(stop);
 		}
-		conn.close();
 		return result;
 	}
 	
@@ -38,7 +37,6 @@ public class StopHelper {
 			result.setLongitude(r.getDouble("stop_lon"));
 			result.setName(r.getString("stop_name"));
 		}
-		conn.close();
 		return result;
 	}
 	
