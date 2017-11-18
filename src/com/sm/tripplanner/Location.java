@@ -1,9 +1,9 @@
 package com.sm.tripplanner;
 
 public class Location {
-	double longitude;
-	double latitude;
-	String name;
+	private double longitude;
+	private double latitude;
+	private String name;
 	
 	public double getLongitude() {
 		return longitude;

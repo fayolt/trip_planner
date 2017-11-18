@@ -1,24 +1,25 @@
 package com.sm.tripplanner;
 
 import java.time.LocalTime;
-import java.util.List;
 
 public class Schedule {
 	private DayType day;
-	private List<LocalTime> times;
-	
+	private LocalTime departure_time;
+
+	public LocalTime getDeparture_time() {
+		return departure_time;
+	}
+
+	public void setDeparture_time(LocalTime departure_time) {
+		this.departure_time = departure_time;
+	}
+
 	public DayType getDay() {
 		return day;
 	}
+
 	public void setDay(DayType day) {
 		this.day = day;
 	}
-	public List<LocalTime> getTimes() {
-		return times;
-	}
-	public void setTimes(List<LocalTime> times) {
-		this.times = times;
-	}
-	
-	
+
 }
