@@ -45,7 +45,7 @@ public class NeighborHelper {
 				
 			}
 		}
-		conn.close();
+		//conn.close();
 		return result;
 	}
 	

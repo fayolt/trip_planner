@@ -15,21 +15,22 @@ public class Graph {
 	public int stops;
 	public Map<Integer, List<Neighbor>> neighbors; // Adjacency list
 	
-	Graph(int stops){
+	public Graph(int stops){
 		this.stops = stops;
 		this.neighbors = new HashMap<Integer, List<Neighbor>>();
 	}
 	
-	void addEdge(Stop departure, Neighbor destination){
+	public void addEdge(Stop departure, Neighbor destination){
 		if(!neighbors.containsKey(departure.getStop_id())){
 			neighbors.put(departure.getStop_id(), new ArrayList<Neighbor>());
 		}
 		neighbors.get(departure.getStop_id()).add(destination);
 	}
 	
-	List<List<Stop>> getAllPaths(Stop departure, Stop destination){
+	public List<List<Stop>> getAllPaths(Stop departure, Stop destination){
 		List<List<Stop>> result = new ArrayList<List<Stop>>();
 		if(departure.getStop_id()== destination.getStop_id()){
+			System.out.println(">>>>>>>>>>>>>>>>>>>>>>>> after if");
 			List<Stop> temp = new ArrayList<Stop>();
 			temp.add(departure);
 			result.add(temp);
