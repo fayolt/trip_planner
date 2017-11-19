@@ -7,12 +7,20 @@ import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.sm.tripplanner.helper.DBUtil;
 import com.sm.tripplanner.helper.NeighborHelper;
 
 public class Controller {
 
 	public static void main(String[] args) {
-		List<Neighbor> neighbors  = new ArrayList<>();
+		
+		try {
+			DBUtil.getInstance().setupDatabase();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		/*List<Neighbor> neighbors  = new ArrayList<>();
 		Stop destination = new Stop();
 		destination.setStop_id(33506);
 		boolean available = false;
@@ -26,7 +34,7 @@ public class Controller {
 	
 		
 		System.out.println(neighbors.size());
-
+*/
 	}
 
 }
