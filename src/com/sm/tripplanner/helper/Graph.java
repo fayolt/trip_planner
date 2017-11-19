@@ -27,38 +27,39 @@ public class Graph {
 		neighbors.get(departure.getStop_id()).add(destination);
 	}
 	
-	public List<List<Stop>> getAllPaths(Stop departure, Stop destination){
-		List<List<Stop>> result = new ArrayList<List<Stop>>();
+	public List<List<Neighbor>> getAllPaths(Neighbor departure, Neighbor destination){
+		List<List<Neighbor>> result = new ArrayList<List<Neighbor>>();
 		if(departure.getStop_id()== destination.getStop_id()){
 			System.out.println(">>>>>>>>>>>>>>>>>>>>>>>> after if");
-			List<Stop> temp = new ArrayList<Stop>();
+			List<Neighbor> temp = new ArrayList<Neighbor>();
 			temp.add(departure);
 			result.add(temp);
 			return result;
 		}
-		Map<Integer, Boolean>visited = new HashMap<Integer, Boolean>();
-		Deque<Stop> path = new ArrayDeque<Stop>();
+		Map<String, Boolean>visited = new HashMap<String, Boolean>();
+		Deque<Neighbor> path = new ArrayDeque<Neighbor>();
 		getAllPathsDFS(departure, destination, visited, path, result);
 		return result;
 	}
 	
-	void getAllPathsDFS(Stop departure, Stop destination, Map<Integer, Boolean>visited, Deque<Stop> path, List<List<Stop>> result){
-		visited.put(departure.getStop_id(), true) ; // Mark visited
+	void getAllPathsDFS(Neighbor departure, Neighbor destination, Map<String, Boolean>visited, Deque<Neighbor> path, List<List<Neighbor>> result){
+		visited.put(departure.getStop_id()+"_"+departure.getTrip_id(), true) ; // Mark visited
 		path.add(departure); // Add to the end
 		if(departure.getStop_id() == destination.getStop_id()){
-			result.add(new ArrayList<Stop>(path));
+			result.add(new ArrayList<Neighbor>(path));
 		}
 		else{
 			if(neighbors.containsKey(departure.getStop_id())){
-				for(Stop stop : neighbors.get(departure.getStop_id())){
-					if(!visited.get(stop.getStop_id())){
+				for(Neighbor stop : neighbors.get(departure.getStop_id())){
+					System.out.println(stop.getName());
+					if(!visited.get(stop.getStop_id()+"_"+stop.getTrip_id())){
 						getAllPathsDFS(stop, destination, visited, path, result);
 					}
 				}
 			}
 		}
 		path.removeLast();
-		visited.put(destination.getStop_id(), false);
+		visited.put(destination.getStop_id()+"_"+destination.getTrip_id(), false);
 	}
 
 }

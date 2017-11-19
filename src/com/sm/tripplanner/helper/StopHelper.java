@@ -34,6 +34,7 @@ public class StopHelper {
 		ResultSet r  = DBUtil.queryDB(conn, query, 1);
 		if(r.next()) {
 			result = new Stop();
+			result.setStop_id(r.getInt("stop_id"));
 			result.setLatitude(r.getDouble("stop_lat"));
 			result.setLongitude(r.getDouble("stop_lon"));
 			result.setName(r.getString("stop_name"));

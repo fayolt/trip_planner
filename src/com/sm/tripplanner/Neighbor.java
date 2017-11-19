@@ -5,7 +5,7 @@ public class Neighbor extends Stop {
 	private int trip_id;
 	private double travel_time;
 
-	public boolean isIs_next() {
+	public boolean getIs_next() {
 		return is_next;
 	}
 

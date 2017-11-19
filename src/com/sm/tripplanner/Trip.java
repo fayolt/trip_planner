@@ -1,12 +1,12 @@
 package com.sm.tripplanner;
 
-import java.util.TreeMap;
+import java.util.List;
 
 public class Trip {
 	private int trip_id;
 	private Route route;
 	private String direction_code;
-	private TreeMap<Integer, Stop> stops;
+	private List<Stop> stops;
 	
 	public int getTrip_id() {
 		return trip_id;
@@ -27,10 +27,10 @@ public class Trip {
 	public void setDirection_code(String direction_code) {
 		this.direction_code = direction_code;
 	}
-	public TreeMap<Integer, Stop> getStops() {
+	public List<Stop> getStops() {
 		return stops;
 	}
-	public void setStops(TreeMap<Integer, Stop> stops) {
+	public void setStops(List<Stop> stops) {
 		this.stops = stops;
 	}
 	
