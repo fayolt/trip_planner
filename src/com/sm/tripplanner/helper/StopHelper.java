@@ -12,7 +12,7 @@ public class StopHelper {
 	static Connection conn = DBUtil.getInstance().getConnection();
 	
 	public static List<Stop> getStops() throws ClassNotFoundException, SQLException{
-		String query = "SELECT DISTINCT stop_id, stop_name, stop_lat, stop_lon FROM stops";
+		String query = "SELECT * FROM STOP";
 		List<Stop> result = new ArrayList<>();
 		ResultSet r  = DBUtil.queryDB(conn, query, Integer.MAX_VALUE);
 

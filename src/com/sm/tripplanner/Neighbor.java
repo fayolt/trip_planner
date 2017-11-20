@@ -1,31 +1,40 @@
 package com.sm.tripplanner;
 
-public class Neighbor extends Stop {
-	private boolean is_next;
-	private int trip_id;
-	private double travel_time;
+public class Neighbor {
+	private String id;
+	private Stop source;
+	private Stop destination;
+	private long travel_time;
 
-	public boolean getIs_next() {
-		return is_next;
+	public String getId() {
+		return id;
 	}
 
-	public void setIs_next(boolean is_next) {
-		this.is_next = is_next;
+	public void setId(String id) {
+		this.id = id;
 	}
 
-	public int getTrip_id() {
-		return trip_id;
+	public Stop getSource() {
+		return source;
 	}
 
-	public void setTrip_id(int trip_id) {
-		this.trip_id = trip_id;
+	public void setSource(Stop source) {
+		this.source = source;
 	}
 
-	public double getTravel_time() {
+	public Stop getDestination() {
+		return destination;
+	}
+
+	public void setDestination(Stop destination) {
+		this.destination = destination;
+	}
+
+	public long getTravel_time() {
 		return travel_time;
 	}
 
-	public void setTravel_time(double travel_time) {
+	public void setTravel_time(long travel_time) {
 		this.travel_time = travel_time;
 	}
 
