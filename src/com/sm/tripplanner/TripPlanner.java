@@ -13,7 +13,6 @@ import com.sm.tripplanner.helper.Graph;
 
 public class TripPlanner {
 	List<Plan> plans = new ArrayList<>();
-	private final List<Stop> nodes;
     private final List<Neighbor> edges;
     private Set<Stop> settledNodes;
     private Set<Stop> unSettledNodes;
@@ -22,7 +21,6 @@ public class TripPlanner {
 
     public TripPlanner(Graph graph) {
         // create a copy of the array so that we can operate on this array
-        this.nodes = new ArrayList<Stop>(graph.getEdges());
         this.edges = new ArrayList<Neighbor>(graph.getVertices());
     }
 
@@ -107,7 +105,7 @@ public class TripPlanner {
      * This method returns the path from the source to the selected target and
      * NULL if no path exists
      */
-    public LinkedList<Stop> getPath(Stop target) {
+    public LinkedList<Stop> getOptimalTrip(Stop target) {
         LinkedList<Stop> path = new LinkedList<Stop>();
         Stop step = target;
         // check if a path exists
@@ -119,7 +117,6 @@ public class TripPlanner {
         path.add(step);
         while (predecessors.get(step) != null) {
             step = predecessors.get(step);
-            System.out.println("Predecessors list "+distance.get(step));
             path.add(step);
         }
         // Put it into the correct order

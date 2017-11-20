@@ -29,7 +29,21 @@ public class StopHelper {
 	}
 	
 	public static Stop get(int stopId) throws ClassNotFoundException, SQLException{
-		String query = "SELECT * FROM stops WHERE stop_id = '"+stopId+ "'";
+		String query = "SELECT * FROM stop WHERE stop_id = '"+stopId+ "'";
+		Stop result = null;
+		ResultSet r  = DBUtil.queryDB(conn, query, 1);
+		if(r.next()) {
+			result = new Stop();
+			result.setStop_id(r.getInt("stop_id"));
+			result.setLatitude(r.getDouble("stop_lat"));
+			result.setLongitude(r.getDouble("stop_lon"));
+			result.setName(r.getString("stop_name"));
+		}
+		return result;
+	}
+	
+	public static Stop getByName(String name) throws ClassNotFoundException, SQLException{
+		String query = "SELECT * FROM stop WHERE stop_name = '"+name+ "'";
 		Stop result = null;
 		ResultSet r  = DBUtil.queryDB(conn, query, 1);
 		if(r.next()) {

@@ -5,6 +5,13 @@ public class TravelLeg {
 	private	Stop end;
 	private double duration;
 	private TransportMode leg_type;
+	private int routeNumber;
+	public int getRouteNumber() {
+		return routeNumber;
+	}
+	public void setRouteNumber(int routeNumber) {
+		this.routeNumber = routeNumber;
+	}
 	public Stop getStart() {
 		return start;
 	}

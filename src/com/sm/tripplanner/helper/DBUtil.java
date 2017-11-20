@@ -2,11 +2,12 @@ package com.sm.tripplanner.helper;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-
-import org.h2.tools.Server;
+import java.util.ArrayList;
+import java.util.List;
 
 public class DBUtil {
 	static DBUtil dbutil = null;
@@ -51,28 +52,29 @@ public class DBUtil {
 		if (rows == 1) {
 			stmt.setMaxRows(1);
 		}
-		System.out.println(query);
 		ResultSet results = stmt.executeQuery(query);
 		return results;
 	}
 	
 	public void setupDatabase() throws SQLException {
 		 Connection connection = getConnection();
-	        Statement stmt = null;
+		 Statement stmt = connection.createStatement();;
 	        String routeQuery = "DROP TABLE IF EXISTS ROUTE; " +
 	        		"CREATE TABLE ROUTE(" + 
         			"  ROUTE_ID VARCHAR(40) PRIMARY KEY, " + 
         			"  NAME VARCHAR(100), " + 
         			"  ROUTE_TYPE INT, " + 
+        			"  ROUTE_SHORT_NAME INT, " + 
         			"  COMPETENT_AUTHORITY VARCHAR(50) " + 
         			"  )" + 
         			" AS SELECT " + 
         			"  ROUTE_ID, " + 
         			"  ROUTE_LONG_NAME, " + 
         			"  ROUTE_TYPE, " + 
+        			"  ROUTE_SHORT_NAME, " + 
         			"  COMPETENT_AUTHORITY " + 
         			"FROM CSVREAD('database/routes.csv') ";
-        	
+	        stmt.addBatch(routeQuery);
 	        String tripQuery = "DROP TABLE IF EXISTS TRIP; " +
 	        		"CREATE TABLE TRIP(" + 
         			"  TRIP_ID INT PRIMARY KEY, " + 
@@ -88,6 +90,8 @@ public class DBUtil {
         			"  TRIP_LONG_NAME, " + 
         			"  DIRECTION_CODE " + 
         			"FROM CSVREAD('database/trips.csv') ";
+	        
+	        stmt.addBatch(tripQuery);
 	        String stopQuery = "DROP TABLE IF EXISTS STOP; " +
 	        		"CREATE TABLE STOP(" + 
         			"  STOP_ID INT PRIMARY KEY, " + 
@@ -101,7 +105,7 @@ public class DBUtil {
         			"  STOP_LAT, " + 
         			"  STOP_LON " + 
         			"FROM CSVREAD('database/stops.csv') ";
-	        
+	        stmt.addBatch(stopQuery);
 	        String stopTimesQuery = "DROP TABLE IF EXISTS STOP_TIME; " +
 	        		"CREATE TABLE STOP_TIME(" + 
         			"  STOP_TIME_ID INT AUTO_INCREMENT PRIMARY KEY, " + 
@@ -117,7 +121,7 @@ public class DBUtil {
         			"  STOP_ID, " + 
         			"  STOP_SEQUENCE " + 
         			"FROM CSVREAD('database/stop_times.csv') ";
-	        
+	        stmt.addBatch(stopTimesQuery);
 	        String calendarQuery =  "DROP TABLE IF EXISTS CALENDAR; " +
 	        		"CREATE TABLE CALENDAR(" + 
         			"  SERVICE_ID INT PRIMARY KEY, " + 
@@ -131,15 +135,13 @@ public class DBUtil {
         			"  SATURDAY, " + 
         			"  SUNDAY " + 
         			"FROM CSVREAD('database/calendar.csv') ";
+	        stmt.addBatch(calendarQuery);
+	        
 	        try {
 	        	
-	        	  connection.setAutoCommit(false);
-	              stmt = connection.createStatement();
-	              stmt.execute(routeQuery);
-	              stmt.execute(tripQuery);
-	              stmt.execute(stopQuery);
-	              stmt.execute(stopTimesQuery);
-	              stmt.execute(calendarQuery);
+	              stmt.executeBatch(); 
+	              connection.commit();
+	              
 	        } catch (SQLException e) {
 	            System.out.println("Exception Message " + e.getLocalizedMessage());
 	        } catch (Exception e) {

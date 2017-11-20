@@ -2,6 +2,7 @@ package com.sm.tripplanner;
 
 public class Neighbor {
 	private String id;
+	private String route_id;
 	private Stop source;
 	private Stop destination;
 	private long travel_time;
@@ -37,5 +38,15 @@ public class Neighbor {
 	public void setTravel_time(long travel_time) {
 		this.travel_time = travel_time;
 	}
+
+	public String getRoute_id() {
+		return route_id;
+	}
+
+	public void setRoute_id(String route_id) {
+		this.route_id = route_id;
+	}
+
+	
 
 }

@@ -1,3 +1,5 @@
-"route_id","route_long_name","route_type","competent_authority"
-"31d2412568e598f3a2f65cb575c53104","Nõlvaku - Põllu - Nõlvaku",3,"Tartu LV"
-"5eb9147b09d7bd1f84594f56d70530a8","Tähe - Ravila Tööstuspark - Tähe",3,"Tartu LV"
+route_id,agency_id,route_short_name,route_long_name,route_type,route_color,competent_authority
+b48fe22da04bd9e532355c5bcfb0e06c,56,1,Kopli - Kadriorg,0,8FD759,Tallinna TA
+1b9660ba37d124940064403c88a1b65e,56,2,Kopli - Suur-Paala,0,8FD759,Tallinna TA
+71b0d11f8c888da4d2566e67c46c3400,56,3,Tondi - Kadriorg,0,8FD759,Tallinna TA
+f4c57b785e3c9c4a09f9e871008bb3b7,56,4,Tondi - Lennujaam,0,8FD759,Tallinna TA
